@@ -20,39 +20,43 @@ $(document).ready(()=>{
                 // getJSON method takes 2 args:
                 // 1. where to get the JSON
                 // 2. Function to run when I'm backs
-                $.getJSON(url,(theDataJSFoundIfAny)=>{
+                $.getJSON(url,function(theDataJSFoundIfAny){
                     // console.log(theDataJSFoundIfAny)
-                    // if (theDataJSFoundIfAny.change>0){
-
-                    // } else if(theDataJSFoundIfAny<0){
-
-                    // }
                     $('#stock-body').append(`
                         <tr>
-                            <td>${theDataJSFoundIfAny.symbol}</td>
-                            <td>${theDataJSFoundIfAny.companyName}</td>
-                            <td>${theDataJSFoundIfAny.latestPrice}</td>
-                            <td>${theDataJSFoundIfAny.high}</td>
-                            <td>${theDataJSFoundIfAny.low}</td>
-                            <td>${theDataJSFoundIfAny.change}</td>
-                            <td>${theDataJSFoundIfAny.primaryExchange}</td>
-                            <td>${theDataJSFoundIfAny.close}</td>
-                            <td>${theDataJSFoundIfAny.latestUpdate}</td>
-                            <td>${theDataJSFoundIfAny.latestVolume}</td>
-                            <td>${theDataJSFoundIfAny.extendedPrice}</td>
-                            <!--<td>${theDataJSFoundIfAny.extendedChangePercent}</td> -->
-                            <td>${theDataJSFoundIfAny.previousClose}</td>
-                            <td>${theDataJSFoundIfAny.change}</td>
-                            <td>${theDataJSFoundIfAny.changePercent}</td>
-                            <td>${theDataJSFoundIfAny.avgTotalVolume}</td>
-                            <!--<td>${theDataJSFoundIfAny.lpeRatio}</td> -->
-                            <td>${theDataJSFoundIfAny.week52Low}</td>
-                            <td>${theDataJSFoundIfAny.week52High}</td>
-                        
+                            <td class="symbol">${theDataJSFoundIfAny.symbol}</td>
+                            <td class="companyName">${theDataJSFoundIfAny.companyName}</td>
+                            <td class="latestPrice">${theDataJSFoundIfAny.latestPrice}</td>
+                            <td class="high">${theDataJSFoundIfAny.high}</td>
+                            <td class="low">${theDataJSFoundIfAny.low}</td>
+                            <td class="change">${theDataJSFoundIfAny.change}</td>
+                            <td class="primaryExchange">${theDataJSFoundIfAny.primaryExchange}</td>
+                            <td class="close">${theDataJSFoundIfAny.close}</td>
+                            <td class="latestUpdate">${theDataJSFoundIfAny.latestUpdate}</td>
+                            <td class="latestVolume">${theDataJSFoundIfAny.latestVolume}</td>
+                            <td class="extendedPrice">${theDataJSFoundIfAny.extendedPrice}</td>
+                            <td class="previousClose">${theDataJSFoundIfAny.previousClose}</td>
+                            <td class="changePercent">${theDataJSFoundIfAny.changePercent}</td>
+                            <td class="avgTotalVolume">${theDataJSFoundIfAny.avgTotalVolume}</td>
+                            <td class="week52Low">${theDataJSFoundIfAny.week52Low}</td>
+                            <td class="week52High">${theDataJSFoundIfAny.week52High}</td>
                         </tr>
                     `)
-                })
+                    // let splitData = theDataJSFoundIfAny.split()
+                    for (i=0;i<theData.length;i++)
+                        if (splitData.val>0){
+                            console.log (`this is ${this} and above zero`)
+                            $(`.change`).css({
+                            'color': 'green'
+                        })
+                        } else if(splitData<0){
+                            console.log (`this is ${this} and below zero`)
+                            $(`.change`).css({
+                            'color': 'red'
+                    })
+                }                    
             })
+        })
             // $('#stock-table').DataTable()
-         })
     })
+})
