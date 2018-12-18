@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Stock Ticker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="darkly.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Get Real-time Stock Quotes!</h1>
+                <form class="stock-form">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="symbol" placeholder="Enter the symbol to search for a particular item (separate multiple with a comma)" />
+                        <button type="submit" class="btn btn-primary submit-button">Get Me Some Good News!</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-12">
+                <table id="stock-table" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>Company Name</th>
+                            <th>Latest Price</th>
+                            <th>High</th>
+                            <th>Low</th>
+                            <th>Change</th>
+                            <th>Primary Exchange</th>
+                            <th>Close</th>
+                            <th>Latest Update</th>
+                            <th>Latest Volume</th>
+                            <th>Extended Price</th>
+                            <!-- <th>Extended Change Percent</th> -->
+                            <th>Previous Close</th>
+                            <th>Change</th>
+                            <th>Change Percent</th>
+                            <th>Average Total Volume</th>
+                            <!-- <th>LPE Ratio</th> -->
+                            <th>52 Week Low</th>
+                            <th>52 Week High</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stock-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+    <script src="jquery.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="scripts.js"></script>  
+
+</html>

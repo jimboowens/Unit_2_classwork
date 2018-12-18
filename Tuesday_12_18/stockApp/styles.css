@@ -1,0 +1,12 @@
+.body{
+    background-color: green;
+}
+.stock-form{
+    margin-bottom: 40px;
+}
+.navbar-brand{
+    background-color: gray;
+}
+#stock-body{
+    overflow:scroll;
+}
