@@ -1,9 +1,4 @@
-
-
-// console.log("Sanity Check")
 $(document).ready(()=>{
-    // console.log("Sanity Check")
-    //   The DOM is done loading. Go get em JS!
         const stockForm = document.querySelector('.stock-form')
         console.log(stockForm)
         $('.stock-form').submit((event)=>{
@@ -15,13 +10,10 @@ $(document).ready(()=>{
             symbols.forEach((s)=>{
                 s=s.trim();
                 console.log(symbols)
-                // let symbol = 'goog'
                 const url = `https://api.iextrading.com/1.0/stock/${s}/quote`
-                // getJSON method takes 2 args:
-                // 1. where to get the JSON
-                // 2. Function to run when I'm backs
                 $.getJSON(url,function(theDataJSFoundIfAny){
-                    // console.log(theDataJSFoundIfAny)
+                    console.log("this is the data JS found if any")
+                    console.log(theDataJSFoundIfAny[1])
                     $('#stock-body').append(`
                         <tr>
                             <td class="symbol">${theDataJSFoundIfAny.symbol}</td>
@@ -42,21 +34,44 @@ $(document).ready(()=>{
                             <td class="week52High">${theDataJSFoundIfAny.week52High}</td>
                         </tr>
                     `)
-                    // let splitData = theDataJSFoundIfAny.split()
-                    for (i=0;i<theData.length;i++)
-                        if (splitData.val>0){
-                            console.log (`this is ${this} and above zero`)
-                            $(`.change`).css({
+                    // let sortedInfo=Object.keys(theDataJSFoundIfAny).sort()
+                    // for (i=0;i<(sortedInfo).length;i++){
+                    //     let iteration = theDataJSFoundIfAny[(sortedInfo)[i]]
+                    //     if (iteration>=0){
+                    //         console.log (`this is ${iteration} and above or equal to zero`)
+                    //         $('.'+sortedInfo[i]).css({
+                    //         'color': 'green'
+                    //     })
+                    //     // console.log (this)
+                    //     } else if(iteration<0){
+                    //         console.log (`this is ${iteration} and below zero`)
+                    //         $('.'+sortedInfo[i]).css({
+                    //         'color': 'red'
+                    //         })
+                    //     } else{
+                    //          $('.'+sortedInfo[i]).css({
+                    //         'color': '#ae77af'
+                    //         })
+                    //     }                   
+                    // }
+                    for (key in theDataJSFoundIfAny){
+                        let value = theDataJSFoundIfAny[key]
+                        if (value>=0){
+                            $('.'+key).css({
                             'color': 'green'
                         })
-                        } else if(splitData<0){
-                            console.log (`this is ${this} and below zero`)
-                            $(`.change`).css({
+                        } else if(value<0){
+                            $('.'+key).css({
                             'color': 'red'
-                    })
-                }                    
+                            })
+                        } else{
+                             $('.'+key).css({
+                            'color': '#ae77af'
+                            })
+                        }                   
+                    }
+                 })
             })
-        })
             // $('#stock-table').DataTable()
-    })
+        })
 })
