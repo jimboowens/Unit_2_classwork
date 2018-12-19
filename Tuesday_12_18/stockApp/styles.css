@@ -1,6 +1,9 @@
 .body{
     background-color: green;
 }
+.h1{
+    margin:40px;
+}
 .stock-form{
     margin-bottom: 40px;
 }
