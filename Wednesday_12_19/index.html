@@ -5,13 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="darkly.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+    <link rel="stylesheet" href="darkly.css" />
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="contatiner">
-        
+    <div class="container">
+        <div class="row">
+            <form id="weather-form">
+                <label>Please enter a zip code for which to search:</label>
+                <div class="input-group">
+                    <input type="number" class="zip-code form-control" length="5" value="30324"/>
+                    <button type="submit" class="btn btn-success">Get Weather</button>
+                </div>
+            </form>
+            <div class="col-12 ata-types">
+                    <table id="label-table" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Weather</th>
+                                <th>City</th>
+                                <th>Temp</th>
+                                <th>High</th>
+                                <th>Low</th>
+                                <th>Pressure</th>
+                                <th>Humidity</th>
+                                <th>Time</th>
+                                <th>Sunrise</th>
+                                <th>Sunset</th>
+                                <th>Visibility</th>
+                            </tr>
+                        </thead>
+                        <tbody class="col-12 weather-data"></tbody>
+                    </table>
+                </div>
+        </div>
     </div>
+    <script src="jquery.js"></script>
+    <script src="config.js"></script>
     <script src="scripts.js"></script>
 </body>
 </html>
