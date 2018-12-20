@@ -4,10 +4,22 @@ $(document).ready(()=>{
     console.log('sanity check')
     $('#weather-form').submit((e)=>{
         e.preventDefault()
-        console.log('user Submitted')
+        // console.log('user Submitted e, which is:')
+        // console.log (e)
         submitCount++
-        const zip = $('.zip-code').val()
-        console.log(zip)
+        let zip =''
+        console.log('e is the last one')
+        // if( typeof $('.zip-code') ==  "string" ){
+        //     zip += $('.zip-code').val()
+        //     const zipURL = `https://www.zipcodeapi.com/rest/${apiKeyCity}/city-zips.JSON/{zip}/Georgia`
+        //     $.getJSON(zip, (zipData)=>{
+        //         console.log(zip)
+        //         console.log(zipData)
+        //     })
+        // }else{
+            zip += $('.zip-code').val()
+            console.log(zip)
+        // }
         const weatherURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apiKey}&units=imperial`
         $.getJSON(weatherURL,(weatherData)=>{
             console.log(`got JSON`)
@@ -20,13 +32,17 @@ $(document).ready(()=>{
                 humidity:weatherData.main.humidity,
             }
             let imageIcon = weatherData.weather[0].icon
-            let currentTime = new Date(weatherData.id*1000)
-            let time = `${currentTime.getHours()+17}:${currentTime.getMinutes()}:${currentTime.getSeconds()}`
-            let sunriseTime = new Date(weatherData.sys.sunrise*1000)
-            let sunrise = `${sunriseTime.getHours()}:${sunriseTime.getMinutes()}:${sunriseTime.getSeconds()}` 
-            let sunsetTime = new Date(weatherData.sys.sunset*1000)
-            let sunset = `${sunsetTime.getHours()}:${sunsetTime.getMinutes()}:${sunsetTime.getSeconds()}`
             
+            function getTime(dataID){
+                const timeStamp = new Date(dataID*1000)
+                let time = `${timeStamp.getHours()+17}:${timeStamp.getMinutes()}:${timeStamp.getSeconds()}`
+                return time
+            }
+
+            let currentTime = getTime(weatherData.id)
+            let sunrise = getTime(weatherData.sys.sunrise)
+            let sunset = getTime(weatherData.sys.sunset)
+
             const newHTML = `
             <tr>
                 <td> <img src="https://openweathermap.org/img/w/${imageIcon}.png" /> </td>
@@ -36,7 +52,7 @@ $(document).ready(()=>{
                 <td class="min">${temps.min}</td>
                 <td class="pressure">${temps.pressure}</td>
                 <td class="humidity">${temps.humidity}</td>
-                <td class="time">${time}</td>
+                <td class="time">${currentTime}</td>
                 <td class="sunrise">${sunrise}</td>
                 <td class="sunset">${sunset}</td>
                 <td class="visibility">${weatherData.visibility}</td>
@@ -53,6 +69,7 @@ $(document).ready(()=>{
                 $(`.weather-data`).html(``)
             })
         })
+        
     })
     
 
