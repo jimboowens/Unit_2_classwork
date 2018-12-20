@@ -1,5 +1,6 @@
 $(document).ready(()=>{
     let submitCount=0
+    let weatherURL = ``
     console.log(submitCount)
     console.log('sanity check')
     $('#weather-form').submit((e)=>{
@@ -9,18 +10,13 @@ $(document).ready(()=>{
         submitCount++
         let zip =''
         console.log('e is the last one')
-        // if( typeof $('.zip-code') ==  "string" ){
-        //     zip += $('.zip-code').val()
-        //     const zipURL = `https://www.zipcodeapi.com/rest/${apiKeyCity}/city-zips.JSON/{zip}/Georgia`
-        //     $.getJSON(zip, (zipData)=>{
-        //         console.log(zip)
-        //         console.log(zipData)
-        //     })
-        // }else{
+        if( typeof $('.zip-code') ===  "number" ){
+            åzip += $('.zip-code').val()
+            weatherURL += `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apiKey}&units=imperial`
+        }else{
             zip += $('.zip-code').val()
-            console.log(zip)
-        // }
-        const weatherURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apiKey}&units=imperial`
+            weatherURL += `https://api.openweathermap.org/data/2.5/weather?q=${zip},us&appid=${apiKey}&units=imperial`
+        }
         $.getJSON(weatherURL,(weatherData)=>{
             console.log(`got JSON`)
             console.log(weatherData)
